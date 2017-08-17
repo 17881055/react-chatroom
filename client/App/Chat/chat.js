@@ -10,11 +10,12 @@ var Chat = function () {
 /**
  *初始化
  */
-Chat.prototype.init = function ({ onNameResult, onJoinResult, onMessage, onRoomResult }) {
+Chat.prototype.init = function ({ onNameResult, onJoinResult, onMessage, onRoomResult, onMemberResult }) {
     this.onNameResult = onNameResult;
     this.onJoinResult = onJoinResult;
     this.onMessage = onMessage;
     this.onRoomResult = onRoomResult;
+    this.onMemberResult = onMemberResult;
     return this;
 }
 
@@ -35,7 +36,6 @@ Chat.prototype.connect = function () {
     }.bind(this));
 
     socket.on(STATIC_TEXT.MESSAGE, function (result) { // 信息
-        console.log(result);
         this.onMessage && this.onMessage(result);
     }.bind(this));
 
@@ -43,10 +43,12 @@ Chat.prototype.connect = function () {
         this.onRoomResult && this.onRoomResult(result);
     }.bind(this));
 
+    socket.on(STATIC_TEXT.ROOM_MENBER, function (result) { // 房间人数
+        this.onMemberResult && this.onMemberResult(result);
+    }.bind(this));
+    
     //this._loopGetRoomList(socket);
 }
-
-
 
 //循环获取房间列表
 Chat.prototype._loopGetRoomList = function (socket) {

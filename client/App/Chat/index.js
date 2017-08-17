@@ -25,7 +25,8 @@ export default class ChatView extends Component {
             name: '无名氏',
             loading: true,
             textValue: '',
-            textMessage: ''
+            textMessage: '',
+            menber: []  //房间成员
         };
     }
 
@@ -34,24 +35,32 @@ export default class ChatView extends Component {
             onNameResult: this.handleNameResult,
             onRoomResult: this.handleRoomResult,
             onJoinResult: this.handleJoinResult,
-            onMessage: this.handleMessage
+            onMessage: this.handleMessage,
+            onMemberResult: this.handleMemberResult
         }).connect();
     }
 
     handleMessage = (result) => {
         const { textMessage } = this.state;
-        console.log(result.text);
+        console.log('handleMessage', result.text);
         this.setState({
             textMessage: textMessage + '\r' + result.text
         });
     }
 
     handleJoinResult = (result) => {
-        console.log(result);
+        console.log('JoinResult', result);
     }
 
     handleRoomResult = (result) => {
-        console.log(result);
+        console.log('RoomResult', result);
+    }
+
+    handleMemberResult = (result) => {
+        var menber = result.text.split(',');
+        this.setState({
+            menber: menber
+        });
     }
 
     handleNameResult = (result) => {
@@ -64,7 +73,7 @@ export default class ChatView extends Component {
         const { textValue, textMessage } = this.state;
         Chat.sendMessage(null, textValue);
         this.setState({
-            textMessage: textMessage + '\r' + '我 :'+ textValue,
+            textMessage: textMessage + '\r' + '我 :' + textValue,
             textValue: ''
         });
     }
@@ -76,7 +85,7 @@ export default class ChatView extends Component {
     }
 
     render() {
-        const { loading, name, textValue, textMessage } = this.state;
+        const { loading, name, textValue, textMessage, menber } = this.state;
 
         return (
             <Layout>
@@ -107,8 +116,12 @@ export default class ChatView extends Component {
                             </div>
                         </Content>
                         <Sider width={300} style={{ background: '#E9E9E8' }}>
-                            <Card title="大厅人员" style={{ padding: '20px', minHeight: 500, borderRadius: 3 }}>
-
+                            <Card title="休息室大厅人员" style={{ padding: '20px', minHeight: 500, borderRadius: 3 }}>
+                                {
+                                    menber.map(
+                                        (item, index) => (<p key={item}>{item}</p>)
+                                    )
+                                }
                             </Card>
                         </Sider>
                     </Layout>

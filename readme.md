@@ -1,3 +1,9 @@
+使用 
+开启服务
+npm run start 
+
+调试react 
+npm run dev 
 
 **服务端**
 >      |----server.js
