@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDom from 'react-dom';
 import App from '../App';
 import Login from '../App/Login';
+import Regedit from '../App/Regedit';
+
 import {
     BrowserRouter as Router,
     StaticRouter, 
@@ -33,6 +35,7 @@ ReactDom.render(
         <div>
             <AuthRoute exact path="/" component={App} />
             <Route path="/login" component={Login} />
+            <Route path="/regedit" component={Regedit} />
         </div>
     </Router>
     , container)

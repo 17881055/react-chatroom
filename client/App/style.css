@@ -15,10 +15,10 @@ body {
 .login-main {
   position: fixed;
   width: 450px;
-  background: rgb(255, 255, 255);
-  box-shadow: 0 0 12px 0 rgba(0, 0, 0, .2);
+  background: rgb(255, 255, 255,0);
+  box-shadow: 2px 2px 10px 0 rgba(0, 0, 0, .2);
   font-size: 14px;
-  border-radius: 12px;
+  border-radius: 5px;
   height: 330px;
   margin: auto;
   left: 0;
@@ -35,5 +35,32 @@ body {
 }
 
 .login-main .login-cnt {
+  padding: 0 35px 10px;
+}
+
+
+.regedit-main {
+  position: fixed;
+  width: 550px;
+  background: rgba(255, 255, 255, 0);
+  box-shadow: 2px 2px 10px 0 rgba(0, 0, 0, 0.15);
+  font-size: 14px;
+  border-radius: 5px;
+  height: 530px;
+  margin: auto;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.regedit-main .regedit-title {
+  margin: 0;
+  padding: 30px 20px 26px;
+  text-align: center;
+  font-size: 18px;
+}
+
+.regedit-main .regedit-cnt {
   padding: 0 35px 10px;
 }
