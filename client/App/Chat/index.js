@@ -13,7 +13,7 @@ import {
     Tag,
     Card,
     Alert,
-    Input
+    Input, Row, Col
 } from 'antd';
 const { TextArea } = Input;
 const { Header, Sider, Content, Footer } = Layout;
@@ -88,7 +88,7 @@ export default class ChatView extends Component {
         const { loading, name, textValue, textMessage, menber } = this.state;
 
         return (
-            <Layout>
+            <Layout style={{ height: '100%' }}>
                 <Header className="header">
                     <h3 style={{ color: '#FFF' }}>{`欢迎回来休息室: ${name}`}</h3>
                     <Spin size="small" spinning={loading} />
@@ -101,21 +101,26 @@ export default class ChatView extends Component {
                                 autosize={{ 'minRows': 20, 'maxRows': 20 }}
                                 style={{ border: 0 }}
                             />
-                            <div style={{ padding: '20px 0 0 0', minHeight: 280 }}>
-                                <TextArea
-                                    placeholder="说点什么"
-                                    onChange={this.handerTextAreaChange}
-                                    value={textValue}
-                                    autosize={{ 'minRows': 5, 'maxRows': 5 }}
-                                    style={{ border: 0 }} />
-                                <Button
-                                    onClick={this.sendMessage}
-                                    style={{ float: 'right', marginTop: 10, width: 120 }}
-                                    type="primary"
-                                    size="large">发 送</Button>
+                            <div style={{ padding: '20px 0 0 0' }}>
+                                <Row gutter={8}>
+                                    <Col span={22} >
+                                        <TextArea
+                                            placeholder="说点什么"
+                                            onChange={this.handerTextAreaChange}
+                                            value={textValue}
+                                            autosize={{ 'minRows': 5, 'maxRows': 5 }}
+                                            style={{ border: 0 }} />
+                                    </Col>
+                                    <Col span={2} >
+                                        <Button
+                                            onClick={this.sendMessage}
+                                            style={{ height: 98, width: '100%' }}
+                                            size="large">发送</Button>
+                                    </Col>
+                                </Row>
                             </div>
                         </Content>
-                        <Sider width={300} style={{ background: '#E9E9E8' }}>
+                        <Sider width={250} style={{ background: '#E9E9E8' }}>
                             <Card title="休息室大厅人员" style={{ padding: '20px', minHeight: 500, borderRadius: 3 }}>
                                 {
                                     menber.map(
@@ -124,12 +129,14 @@ export default class ChatView extends Component {
                                 }
                             </Card>
                         </Sider>
+
+
+
                     </Layout>
                 </Content>
                 <Footer style={{ textAlign: 'center' }}>
                     Copyleft ©2017 Created by Ethan   Chatrooms version 0.1.0
                 </Footer>
-
             </Layout>
         );
     }

@@ -1,3 +1,8 @@
+body {
+  background: url('../assets/bg.jpg') 100% no-repeat;
+  background-size: 105% 100%;
+}
+
 #components-layout-demo-fixed .logo {
   width: 120px;
   height: 31px;
@@ -5,4 +10,30 @@
   border-radius: 6px;
   margin: 16px 24px 16px 0;
   float: left;
+}
+
+.login-main {
+  position: fixed;
+  width: 450px;
+  background: rgb(255, 255, 255);
+  box-shadow: 0 0 12px 0 rgba(0, 0, 0, .2);
+  font-size: 14px;
+  border-radius: 12px;
+  height: 330px;
+  margin: auto;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.login-main .login-title {
+  margin: 0;
+  padding: 30px 20px 26px;
+  text-align: center;
+  font-size: 18px;
+}
+
+.login-main .login-cnt {
+  padding: 0 35px 10px;
 }

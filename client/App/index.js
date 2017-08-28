@@ -15,6 +15,7 @@ import {
     Alert,
     Input
 } from 'antd';
+import './style.css';
 const { TextArea } = Input;
 const { Header, Sider, Content, Footer } = Layout;
 

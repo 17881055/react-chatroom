@@ -1,19 +1,39 @@
 import React from 'react';
 import ReactDom from 'react-dom';
-
 import App from '../App';
+import Login from '../App/Login';
 import {
     BrowserRouter as Router,
-    StaticRouter, // for server rendering
+    StaticRouter, 
     Route,
-    Link
+    Link,
+    Redirect
 } from 'react-router-dom';
 
-const container = document.getElementById('container');
+const container = document.querySelector('#container');
+
+let fakeAuth = { 'isAuthenticated': false };
+
+// 权限路由
+const AuthRoute = ({ component: Component, ...rest }) => (
+    <Route {...rest} render={props => (
+        fakeAuth.isAuthenticated ? (
+            <Component {...props} />
+        ) : (
+                <Redirect to={{
+                    pathname: '/login',
+                    state: { from: props.location }
+                }} />
+            )
+    )} />
+)
 
 ReactDom.render(
     <Router>
-        <Route path="/" component={App} />
+        <div>
+            <AuthRoute exact path="/" component={App} />
+            <Route path="/login" component={Login} />
+        </div>
     </Router>
     , container)
 

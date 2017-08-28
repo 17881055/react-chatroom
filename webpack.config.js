@@ -44,7 +44,7 @@ module.exports = {
                              imports: ['react', 'redbox-react']
                          }]
                      }], */
-                    //["transform-decorators-legacy"],
+                    ["transform-decorators-legacy"],
                     //["transform-flow-strip-types"],  //强类型
                     ["import", {
                         "libraryName": "antd",
@@ -60,6 +60,13 @@ module.exports = {
         {
             test: /\.less$/,
             loader: 'style-loader!css-loader!less-loader'
+        }, {
+            test: /\.(gif|jpg|png|woff|svg|eot|ttf)$/, // 这些资源包括在js中import或在css中background url引入都会被处理
+            loader: 'url-loader',
+            query: {
+                limit: 8192,
+                name: 'assets/[name].[ext]'
+            }
         }
         ]
     },
